@@ -1,6 +1,6 @@
 {
   "name": "@zzznpm/orphan",
-  "version": "0.2.16",
+  "version": "0.2.26",
   "type": "commonjs",
   "description": "to look after orphans and widows in their distress and to keep oneself from being polluted by the world.",
   "repository": {
@@ -19,8 +19,7 @@
     "tsc": "tsc --rootDir ./src/"
   },
   "bugs": "https://github.com/zzzgit/orphan/issues",
-  "keywords": [
-  ],
+  "keywords": [],
   "license": "LGPL-3.0-or-later",
   "engines": {
     "npm": ">=8.4.0",
@@ -31,10 +30,10 @@
     "ts-custom-error": "^3.2.0"
   },
   "devDependencies": {
-    "@rollup/plugin-typescript": "^8.3.3",
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
     "@rollup/plugin-replace": "^4.0.0",
+    "@rollup/plugin-typescript": "^8.3.3",
     "@types/jest": "^28.1.4",
     "@types/node": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.30.0",

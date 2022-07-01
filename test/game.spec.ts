@@ -2,7 +2,7 @@
 describe("game", () => {
 	test("index", () => {
 
-		return expect(Promise.resolve(true)).resolves.toBe(true)
+		return expect(true).toBe(true)
 	})
 	// test("push after shutdown", () => {
 	// 	const runner = new Corunner(2)

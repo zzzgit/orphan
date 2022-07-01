@@ -1,0 +1,59 @@
+{
+  "name": "@zzznpm/orphan",
+  "version": "0.2.16",
+  "type": "commonjs",
+  "description": "to look after orphans and widows in their distress and to keep oneself from being polluted by the world.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zzzgit/orphan"
+  },
+  "main": "built/lib/index.js",
+  "types": "built/t/index.d.ts",
+  "scripts": {
+    "test": "npm run lint && jest",
+    "build": "npm run test && npm run clean && npm run tsc && npm run rollup",
+    "clean": "rimraf coverage .nyc_output .rts2_cache built",
+    "rollup": "cross-env NODE_ENV=production rollup -c",
+    "lint": "eslint './src/**' '-c=.eslintrc.yml'",
+    "jest": "jest 'test/*'",
+    "tsc": "tsc --rootDir ./src/"
+  },
+  "bugs": "https://github.com/zzzgit/orphan/issues",
+  "keywords": [
+  ],
+  "license": "LGPL-3.0-or-later",
+  "engines": {
+    "npm": ">=8.4.0",
+    "node": ">=16.0"
+  },
+  "author": "jonkee",
+  "dependencies": {
+    "ts-custom-error": "^3.2.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^8.3.3",
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "@rollup/plugin-replace": "^4.0.0",
+    "@types/jest": "^28.1.4",
+    "@types/node": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.18.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-janus": "^1.1.24",
+    "eslint-plugin-array-func": "^3.1.7",
+    "eslint-plugin-jest": "^26.5.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-security": "^1.5.0",
+    "eslint-plugin-unicorn": "^42.0.0",
+    "husky": "^8.0.1",
+    "jest": "^28.1.2",
+    "jest-progress-bar-reporter": "^1.0.24",
+    "rollup": "^2.75.7",
+    "ts-jest": "^28.0.5",
+    "typescript": "^4.7.4"
+  }
+}

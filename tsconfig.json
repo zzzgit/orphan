@@ -1,0 +1,7 @@
+{
+	"extends": "./tsconfig.base.json",
+	"compilerOptions": {
+	},
+	"exclude": ["node_modules"],
+	"include": ["src/**/*", "rollup.config.js", "commitlint.config.js", "jest.config.js"]
+}

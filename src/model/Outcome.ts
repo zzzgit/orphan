@@ -3,11 +3,12 @@
 type Outcome = {
 	array: number[]
 	statistics: {
-		average: number
+		// average: number
 		max: number
 		min: number
 		sum: number
 		streak: number
+		std: number
 	}
 	bet:{
 		all: number

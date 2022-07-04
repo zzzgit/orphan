@@ -4,7 +4,7 @@ import Streak from "../streak/Streak"
 import Entity from "../entity/Entity"
 import IRoad from "./IRoad"
 import Outcome from "../Outcome"
-import {std} from 'mathjs'
+import {std, max, min} from 'mathjs'
 
 
 class Blackhole implements IRoad {
@@ -76,8 +76,8 @@ class Blackhole implements IRoad {
 		const sum = array.reduce((accumulator, a) => accumulator + a, 0)
 		result.statistics = {
 			// average: sum / this.getSize(),
-			max: Math.max(...array),
-			min: Math.min(...array),
+			max: max(array),
+			min: min(array),
 			sum: sum,
 			streak: array.length,
 			std: +std(array),

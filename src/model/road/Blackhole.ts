@@ -68,7 +68,7 @@ class Blackhole implements IRoad {
 		return model
 	}
 
-	getOutcome(): Outcome {
+	getOutcome(shouldBuildStrategy: boolean = false): Outcome {
 		const result: Outcome = this._getModel()
 		// array
 		const array = this._getArray()
@@ -129,55 +129,57 @@ class Blackhole implements IRoad {
 			},
 		}
 		// strategy
-		let balance = 0
-		let level = 1
-		let chipGained = 0
-		let stopTimes = 0
-		let limitTimes = 0
-		streak = this.getFirstStreak()
-		while (streak) {
-			let first = streak.getFirstEntity()
-			if (first?.isVictorious) {
-				while (first) {
-					if (first.isBanco) {
-						balance = balance + level * (.95 + 0)
-					} else {
-						balance = balance + level
+		if (shouldBuildStrategy) {
+			let balance = 0
+			let level = 1
+			let chipGained = 0
+			let stopTimes = 0
+			let limitTimes = 0
+			streak = this.getFirstStreak()
+			while (streak) {
+				let first = streak.getFirstEntity()
+				if (first?.isVictorious) {
+					while (first) {
+						if (first.isBanco) {
+							balance = balance + level * (.95 + 0)
+						} else {
+							balance = balance + level
+						}
+						chipGained = chipGained + level
+						if (chipGained >= 7) {
+							limitTimes++
+							level = 1
+							chipGained = 0
+						}
+						first = first.getNextEntity() as Entity
 					}
-					chipGained = chipGained + level
-					if (chipGained >= 7) {
-						limitTimes++
-						level = 1
-						chipGained = 0
+				} else {
+					while (first) {
+						const originalLevel = level
+						balance = balance - level
+						chipGained = chipGained - level
+						if (chipGained <= -155) {
+							stopTimes++
+							level = 1
+							chipGained = 0
+						}
+						if (originalLevel === 4 && chipGained <= -75) {
+							level = 8
+						} else if (originalLevel === 2 && chipGained <= -35) {
+							level = 4
+						} else if (originalLevel === 1 && chipGained <= -15) {
+							level = 2
+						}
+						first = first.getNextEntity() as Entity
 					}
-					first = first.getNextEntity() as Entity
 				}
-			} else {
-				while (first) {
-					const originalLevel = level
-					balance = balance - level
-					chipGained = chipGained - level
-					if (chipGained <= -155) {
-						stopTimes++
-						level = 1
-						chipGained = 0
-					}
-					if (originalLevel === 4 && chipGained <= -75) {
-						level = 8
-					} else if (originalLevel === 2 && chipGained <= -35) {
-						level = 4
-					} else if (originalLevel === 1 && chipGained <= -15) {
-						level = 2
-					}
-					first = first.getNextEntity() as Entity
-				}
+				streak = streak.getNextStreak() as Streak
 			}
-			streak = streak.getNextStreak() as Streak
-		}
-		result.strategy = {
-			balance: Math.round(balance),
-			stopTimes: stopTimes,
-			limitTimes: limitTimes,
+			result.strategy = {
+				balance: Math.round(balance),
+				stopTimes: stopTimes,
+				limitTimes: limitTimes,
+			}
 		}
 		return result
 	}
